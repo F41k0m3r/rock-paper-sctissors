@@ -12,16 +12,12 @@ const GameField:FC<Props> = ({store, setResults, setUserVote}) => {
     const handleClick = (userVote:'rock'|'paper'|'scissors'):void => {
         setUserVote(userVote)
         store.setComputerVote()
+        if (store.winner === 'user') {
+            store.incrementScore()
+        }
         store.compare(userVote)
         setResults(true)
     }
-    useEffect(()=>{
-        console.log(store.winner);
-        if (store.winner === 'user') {
-            store.incrementScore()
-            console.log(store.winner);
-        }
-    },[store.winner])
     return (
         <div className={styles.wrap}>
             <Score score={store.score}/>
