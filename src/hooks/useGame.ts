@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
 interface Game {
-    compare: (userVote:'rock'|'paper'|'scissors') => {won:string,}
+    compare: (userVote:'rock'|'paper'|'scissors') => string
 
 }
 export const useGame = ():Game => {
@@ -13,7 +13,7 @@ export const useGame = ():Game => {
         if (random === 2) computer = 'paper'
         if (random === 3) computer = 'scissors'
     }
-    const compare = (userVote:'rock'|'paper'|'scissors'):{won: string} => {
+    const compare = (userVote:'rock'|'paper'|'scissors'):string => {
         computerVote()
         if (computer === 'rock' && userVote === 'rock') setWon('nobody')
         if (computer === 'rock' && userVote === 'paper') setWon('user')
@@ -24,9 +24,8 @@ export const useGame = ():Game => {
         if (computer === 'paper' && userVote === 'rock') setWon('computer')
         if (computer === 'paper' && userVote === 'paper') setWon('nobody')
         if (computer === 'paper' && userVote === 'scissors') setWon('user')
-        return {
-            won
-        }
+        return won
+
     }
 
 
